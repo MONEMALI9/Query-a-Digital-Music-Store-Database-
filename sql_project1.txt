@@ -1,0 +1,41 @@
+/*
+
+	author : monem elmongy
+	date   : sep,2022
+
+*/
+
+/*1 Who are the top ten of artists and what is number of albums for each one?*/
+
+SELECT Artist.Name , count(album.artistid) "number of album"
+FROM album
+JOIN Artist ON Album.ArtistId = Artist.ArtistId 
+GROUP BY Artist.name
+ORDER BY "number of album" DESC
+LIMIT 10;
+
+/*2 what is the best seller of top ten?*/
+
+SELECT (customer.firstname||" "||customer.lastname)
+AS customername,sum(Invoice.total) as total 
+FROM Invoice
+JOIN customer ON  Invoice.CustomerId = Customer.CustomerId 
+GROUP BY Customername
+ORDER BY total DESC
+LIMIT 10 ;
+
+
+/*3 which media type is the most commonly used ?*/
+SELECT MediaType.Name,count(track.MediaType id) AS total
+FROM track
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+GROUP BY MediaType.Name
+ORDER BY total DESC 
+limit 10;
+
+/*4 who is the most supportive emmployee ?*/
+SELECT (employee.firstname||" "||employee.lastname)
+AS employeename,sum(Customer.CustomerId ) as "number of customer"
+FROM employee
+JOIN customer ON  employee.employeeId = Customer.supportrepId 
+GROUP BY employeename ;
